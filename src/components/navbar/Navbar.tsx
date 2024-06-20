@@ -2,15 +2,17 @@ import {
   Box,
   Container,
   Flex,
-  Link,
+  Link as CLink,
   useColorModeValue,
 } from '@chakra-ui/react';
+
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   return (
     <Box
       as="header"
-      bg={useColorModeValue('gray.50', 'gray.800')}
+      bg={useColorModeValue('white', 'gray.800')}
       color={useColorModeValue('gray.600', 'white')}
       py={{ base: 6 }}
       px={{ base: 4 }}
@@ -18,15 +20,16 @@ export const Navbar = () => {
       borderStyle={'solid'}
       borderColor={useColorModeValue('gray.100', 'gray.900')}
     >
-      <Container maxWidth="7xl">
+      <Container maxWidth="8xl">
         <Flex justifyContent="space-between" alignItems="center">
-          <Link href="/" fontWeight="800">
+          <CLink to="/" fontWeight="800" as={Link}>
             Web App
-          </Link>
+          </CLink>
 
           <Flex as="nav" gap="5">
-            <Link href="/about" fontWeight="600">About</Link>
-            <Link href="/discover" fontWeight="600">Discover</Link>
+            <CLink to="/create" fontWeight="600" as={Link}>
+              Create
+            </CLink>
           </Flex>
         </Flex>
       </Container>
