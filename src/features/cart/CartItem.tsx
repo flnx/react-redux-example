@@ -8,14 +8,21 @@ import {
   CardFooter,
   Button,
   ButtonGroup,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
 } from '@chakra-ui/react';
 
 import type { TCartItem } from './CartType';
 import { useDispatch } from 'react-redux';
 import { deleteFromCart } from './cartSlice';
+import { useState } from 'react';
 
 export const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
   const { description, imageUrl, inStock, name, price, quantity } = cartItem;
+  const [newQ, setNewQ] = useState(quantity);
   const dispatch = useDispatch();
 
   const deleteFromCartHandler = () => {
@@ -33,22 +40,22 @@ export const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
       <Image
         objectFit="cover"
         maxW={{ base: '100%' }}
-        width={{ sm: '160px', md: '250px', lg: '250px' }}
-        height={{ sm: '160px', md: 'auto' }}
-        aspectRatio={{ base: '16 / 9', md: '4 / 4' }}
+        width={{ sm: '120px', md: '250px', lg: '250px' }}
+        height={{ base: '200px', sm: '120px', md: 'auto' }}
+        aspectRatio={{ base: '16 / 9', md: '4 / 3' }}
         src={imageUrl}
         alt="Caffe Latte"
         rounded="xl"
       />
 
-      <Stack>
+      <Stack width="100%">
         <CardBody>
           <Heading size="md">{name}</Heading>
 
           <Text py={{ lg: 2 }}>{description}</Text>
         </CardBody>
 
-        <CardFooter>
+        <CardFooter justifyContent="space-between" gap="0.5rem">
           <ButtonGroup>
             <Button variant="solid" colorScheme="blue">
               Buy
@@ -62,6 +69,15 @@ export const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
               Remove
             </Button>
           </ButtonGroup>
+          <NumberInput size="md" maxW={24} value={newQ} min={0} onChange={(val) => {
+            setNewQ(+val)
+          }}>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
         </CardFooter>
       </Stack>
     </Card>

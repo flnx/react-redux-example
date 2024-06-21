@@ -1,7 +1,7 @@
 import { createRoutesFromElements, createBrowserRouter, Route } from 'react-router-dom';
 
 import { HomePage } from 'src/pages/Home';
-import { Cart } from 'src/pages/Cart';
+import { CartPage } from 'src/pages/Cart';
 import { Layout } from 'src/layout';
 
 export const router = createBrowserRouter(
@@ -12,7 +12,7 @@ export const router = createBrowserRouter(
       errorElement={<div>Something went wrong</div>}
     >
       <Route index element={<HomePage />} />
-      <Route path="cart" element={<Cart />} />
+      <Route path="cart" element={<CartPage />} />
     </Route>
   )
 );

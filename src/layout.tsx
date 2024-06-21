@@ -5,7 +5,9 @@ export const Layout = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+      >
         <Outlet />
       </main>
     </>

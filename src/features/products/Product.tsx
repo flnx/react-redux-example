@@ -27,7 +27,7 @@ export const Product = ({ productData }: ProductProps) => {
   const handleAddToCard = () => {
     addToCartDispatcher(productData);
     toast({
-      title: name + ' has been added to your cart',
+      title: 'A new product has been added to your cart',
       status: 'success',
       duration: 1500,
       isClosable: true,

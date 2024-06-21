@@ -1,10 +1,18 @@
 import { useSelector } from 'react-redux';
 import type { RootState } from 'src/store/store';
 import { CartItem } from './CartItem';
-import { Divider, Flex } from '@chakra-ui/react';
+import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 
 export const CartItems = () => {
   const cartItems = useSelector((state: RootState) => state.cart);
+
+  if (cartItems.length === 0) {
+    return (
+      <Box>
+        <Text fontSize="1.25rem" fontWeight={300}>Your cart is empty</Text>
+      </Box>
+    );
+  }
 
   return (
     <Flex
