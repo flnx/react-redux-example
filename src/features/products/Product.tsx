@@ -11,7 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
-import type { Product as TProduct } from '../../types/Product';
+import type { TProduct } from './ProductType';
 
 export const Product = ({ productData }: { productData: TProduct }) => {
   const { description, imageUrl, name, price, quantity } = productData;

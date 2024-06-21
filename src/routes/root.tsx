@@ -1,11 +1,8 @@
-import {
-  createRoutesFromElements,
-  createBrowserRouter,
-  Route,
-} from 'react-router-dom';
-import { HomePage } from '../pages/Home';
-import { Cart } from '../pages/Create';
-import { Layout } from '../layout';
+import { createRoutesFromElements, createBrowserRouter, Route } from 'react-router-dom';
+
+import { HomePage } from 'src/pages/Home';
+import { Cart } from 'src/pages/Create';
+import { Layout } from 'src/layout';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

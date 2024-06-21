@@ -1,4 +1,4 @@
-import { Products } from "../components/products/Products";
+import { Products } from "../features/products/Products";
 
 export const HomePage = () => {
   
