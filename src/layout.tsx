@@ -7,7 +7,7 @@ export const Layout = () => {
     <>
       <Navbar />
       <main>
-        <Container maxW="8xl" py="2rem">
+        <Container maxW="8xl" py="4rem">
           <Outlet />
         </Container>
       </main>
