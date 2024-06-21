@@ -27,8 +27,8 @@ export const Navbar = () => {
           </CLink>
 
           <Flex as="nav" gap="5">
-            <CLink to="/create" fontWeight="600" as={Link}>
-              Create
+            <CLink to="/cart" fontWeight="600" as={Link}>
+              Cart
             </CLink>
           </Flex>
         </Flex>

@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { HomePage } from '../pages/Home';
-import { CreatePage } from '../pages/Create';
+import { Cart } from '../pages/Create';
 import { Layout } from '../layout';
 
 export const router = createBrowserRouter(
@@ -15,7 +15,7 @@ export const router = createBrowserRouter(
       errorElement={<div>Something went wrong</div>}
     >
       <Route index element={<HomePage />} />
-      <Route path="create" element={<CreatePage />} />
+      <Route path="cart" element={<Cart />} />
     </Route>
   )
 );

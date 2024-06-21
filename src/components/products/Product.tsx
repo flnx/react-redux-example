@@ -1,11 +1,11 @@
 import {
   AspectRatio,
   Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
   Divider,
+  Flex,
   Heading,
   Stack,
   Text,
@@ -36,22 +36,28 @@ export const Product = ({ productData }: { productData: TProduct }) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
-          {quantity > 0 ? (
-            <>
-              <Button variant="solid" colorScheme="blue">
-                Buy now
-              </Button>
-              <Button variant="ghost" colorScheme="blue">
-                Add to cart
-              </Button>
-            </>
-          ) : (
-            <Button variant="solid" colorScheme="blue" isDisabled={true}>
-              Out of stock
-            </Button>
-          )}
-        </ButtonGroup>
+        <Flex
+          alignItems="center"
+          gap="0.25rem"
+          justifyContent="space-between"
+          w="full"
+        >
+          <Button
+            variant="solid"
+            colorScheme="blue"
+            isDisabled={quantity === 0}
+          >
+            Add to cart
+          </Button>
+          <Text
+            color={quantity > 0 ? 'green.500' : 'red.500'}
+            fontSize="xs"
+            fontWeight="600"
+            ml="auto"
+          >
+            {quantity} in stock
+          </Text>
+        </Flex>
       </CardFooter>
     </Card>
   );

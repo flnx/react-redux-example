@@ -1,7 +1,7 @@
-export const CreatePage = () => {
+export const Cart = () => {
   return (
-    <>
-      <h1>Create Page</h1>
-    </>
+    <section>
+      <h1>Cart Page</h1>
+    </section>
   );
 };
