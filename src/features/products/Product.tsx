@@ -1,5 +1,6 @@
 import {
   AspectRatio,
+  Box,
   Button,
   Card,
   CardBody,
@@ -9,12 +10,28 @@ import {
   Heading,
   Stack,
   Text,
+  useToast,
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
-import type { TProduct } from './ProductType';
+import type { TCartItem, TProduct } from './ProductType';
+import { useDispatch } from 'react-redux';
+import { addToCart } from './productsSlice';
 
-export const Product = ({ productData }: { productData: TProduct }) => {
-  const { description, imageUrl, name, price, quantity } = productData;
+export const Product = ({ productData }: { productData: TProduct | TCartItem }) => {
+  const { description, imageUrl, name, price, inStock } = productData;
+  const dispatch = useDispatch();
+  const toast = useToast();
+
+  const handleAddToCard = () => {
+    dispatch(addToCart(productData));
+    toast({
+      title: name + " has been added to your cart",
+      status: 'success',
+      duration: 1500,
+      isClosable: true,
+      position: 'top'
+    });
+  };
 
   return (
     <Card maxW="sm">
@@ -45,18 +62,23 @@ export const Product = ({ productData }: { productData: TProduct }) => {
           <Button
             variant="solid"
             colorScheme="blue"
-            isDisabled={quantity === 0}
+            isDisabled={inStock === 0}
+            onClick={handleAddToCard}
           >
             Add to cart
           </Button>
-          <Text
-            color={quantity > 0 ? 'green.500' : 'red.500'}
+          <Flex
+            color={inStock > 0 ? 'green.500' : 'red.500'}
             fontSize="xs"
             fontWeight="600"
             ml="auto"
+            alignItems="center"
+            gap={{ base: '1', sm: '0', md: '1' }}
+            flexDirection={{ sm: 'column', md: 'row' }}
           >
-            {quantity} in stock
-          </Text>
+            <span>{inStock}</span>
+            <span>in stock</span>
+          </Flex>
         </Flex>
       </CardFooter>
     </Card>

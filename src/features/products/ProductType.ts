@@ -3,5 +3,7 @@ export type TProduct = {
   description: string;
   price: number;
   imageUrl: string;
-  quantity: number;
-}
+  inStock: number;
+};
+
+export type TCartItem = TProduct & { quantity: number };
