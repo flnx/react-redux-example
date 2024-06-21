@@ -17,16 +17,19 @@ import {
 
 import type { TCartItem } from './CartType';
 import { useDispatch } from 'react-redux';
-import { deleteFromCart } from './cartSlice';
+import { changeCartItemQty, deleteFromCart } from './cartSlice';
 import { useState } from 'react';
 
 export const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
   const { description, imageUrl, inStock, name, price, quantity } = cartItem;
-  const [newQ, setNewQ] = useState(quantity);
   const dispatch = useDispatch();
 
   const deleteFromCartHandler = () => {
     dispatch(deleteFromCart(cartItem));
+  };
+
+  const onValueChangeHandler = (val: number) => {
+    dispatch(changeCartItemQty({ product: cartItem, val }));
   };
 
   return (
@@ -69,9 +72,13 @@ export const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
               Remove
             </Button>
           </ButtonGroup>
-          <NumberInput size="md" maxW={24} value={newQ} min={0} onChange={(val) => {
-            setNewQ(+val)
-          }}>
+          <NumberInput
+            size="md"
+            maxW={24}
+            value={quantity}
+            min={0}
+            onChange={(val) => onValueChangeHandler(Number(val))}
+          >
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />

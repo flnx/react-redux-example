@@ -22,8 +22,20 @@ const cartSlice = createSlice({
       const payloadItem = action.payload;
       return state.filter((i) => i.name !== payloadItem.name);
     },
+    changeCartItemQty: (
+      state,
+      action: PayloadAction<{ product: TCartItem; val: number }>
+    ) => {
+      const payloadItem = action.payload.product;
+
+      return state.map((item) =>
+        item.name === payloadItem.name
+          ? { ...item, quantity: action.payload.val }
+          : item
+      );
+    },
   },
 });
 
 export const cartReducer = cartSlice.reducer;
-export const { addToCart, deleteFromCart } = cartSlice.actions;
+export const { addToCart, deleteFromCart, changeCartItemQty} = cartSlice.actions;
