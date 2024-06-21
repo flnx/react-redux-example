@@ -1,15 +1,14 @@
-import { useSelector } from "react-redux";
-import { Products } from "src/features/products/Products";
-import type { RootState } from 'src/store/store';
+import { Box, Container, Heading } from '@chakra-ui/react';
+import { CartItems } from 'src/features/cart/CartItems';
 
 export const Cart = () => {
-  const products = useSelector((state: RootState) => state.products.cart);
-
   return (
-    <section>
-      <h1>Cart Page</h1>
+    <Box backgroundColor="gray.200" rounded="md" p="1.5rem">
+      <Container maxW="5xl">
+        <Heading pb="1.5rem">Your cart</Heading>
 
-      <Products products={products}/>
-    </section>
+        <CartItems />
+      </Container>
+    </Box>
   );
 };

@@ -1,13 +1,12 @@
-import { useSelector } from 'react-redux';
 import { Products } from 'src/features/products/Products';
-import type { RootState } from 'src/store/store';
+import { Container } from '@chakra-ui/react';
 
 export const HomePage = () => {
-  const products = useSelector((state: RootState) => state.products.products);
-
   return (
-    <section>
-      <Products products={products} />
-    </section>
+    <Container maxW="8xl" py="4rem">
+      <section>
+        <Products />
+      </section>
+    </Container>
   );
 };

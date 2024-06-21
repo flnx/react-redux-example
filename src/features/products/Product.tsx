@@ -1,6 +1,5 @@
 import {
   AspectRatio,
-  Box,
   Button,
   Card,
   CardBody,
@@ -13,23 +12,26 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
-import type { TCartItem, TProduct } from './ProductType';
-import { useDispatch } from 'react-redux';
-import { addToCart } from './productsSlice';
+import type { TProduct } from './ProductType';
+import { useAddToCartDispatcher } from 'src/features/shared/useAddToCartDispatcher';
 
-export const Product = ({ productData }: { productData: TProduct | TCartItem }) => {
+type ProductProps = {
+  productData: TProduct;
+};
+
+export const Product = ({ productData }: ProductProps) => {
   const { description, imageUrl, name, price, inStock } = productData;
-  const dispatch = useDispatch();
+  const { addToCartDispatcher } = useAddToCartDispatcher();
   const toast = useToast();
 
   const handleAddToCard = () => {
-    dispatch(addToCart(productData));
+    addToCartDispatcher(productData);
     toast({
-      title: name + " has been added to your cart",
+      title: name + ' has been added to your cart',
       status: 'success',
       duration: 1500,
       isClosable: true,
-      position: 'top'
+      position: 'top',
     });
   };
 

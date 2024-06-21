@@ -1,12 +1,20 @@
+import { useGetProductsQuery } from 'src/features/products/productsApiSlice';
+
 import { SimpleGrid } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
+
 import { Product } from './Product';
-import { TCartItem, TProduct } from './ProductType';
 
-type ProductsProps = {
-  products: TProduct[] | TCartItem[];
-};
+export const Products = () => {
+  const { isLoading, data, error } = useGetProductsQuery('');
 
-export const Products = ({ products }: ProductsProps) => {
+  if (isLoading) return <Spinner />;
+
+  if (error) {
+    return <div>Something went wrong...</div>;
+  }
+
+  const products = data || [];
 
   return (
     <SimpleGrid
