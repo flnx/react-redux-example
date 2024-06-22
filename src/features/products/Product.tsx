@@ -45,6 +45,9 @@ export const Product = ({ productData }: ProductProps) => {
               src={imageUrl}
               alt="Green double couch with wooden legs"
               borderRadius="lg"
+              h="full"
+              w="full"
+              objectFit="cover"
             />
           </Link>
         </AspectRatio>
