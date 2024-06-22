@@ -14,6 +14,7 @@ import {
 import { Image } from '@chakra-ui/react';
 import type { TProduct } from './ProductType';
 import { useAddToCartDispatcher } from 'src/features/shared/useAddToCartDispatcher';
+import { Link } from 'react-router-dom';
 
 type ProductProps = {
   productData: TProduct;
@@ -39,11 +40,13 @@ export const Product = ({ productData }: ProductProps) => {
     <Card maxW="sm">
       <CardBody>
         <AspectRatio ratio={4 / 3}>
-          <Image
-            src={imageUrl}
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
+          <Link to={"items/" + productData.name}>
+            <Image
+              src={imageUrl}
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+            />
+          </Link>
         </AspectRatio>
         <Stack mt="6" spacing="3">
           <Heading size="md">{name}</Heading>

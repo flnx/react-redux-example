@@ -18,7 +18,6 @@ import {
 import type { TCartItem } from './CartType';
 import { useDispatch } from 'react-redux';
 import { changeCartItemQty, deleteFromCart } from './cartSlice';
-import { useState } from 'react';
 
 export const CartItem = ({ cartItem }: { cartItem: TCartItem }) => {
   const { description, imageUrl, inStock, name, price, quantity } = cartItem;
