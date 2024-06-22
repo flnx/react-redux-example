@@ -7,17 +7,21 @@ import {
   Heading,
   Img,
   Spinner,
-  StatUpArrow,
   Text,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addToCart } from 'src/features/cart/cartSlice';
 import { useGetProductsQuery } from 'src/features/products/productsApiSlice';
 
 export const ProductPage = () => {
   const { itemId } = useParams();
   const { isLoading, data, error } = useGetProductsQuery('');
+  const dispatch = useDispatch();
+  const toast = useToast();
+  const boxShadow = useColorModeValue('6px 6px 0 black', '6px 6px 0 cyan');
 
   if (isLoading) return <Spinner />;
 
@@ -30,6 +34,17 @@ export const ProductPage = () => {
   if (!product) {
     return <div>Product not found</div>;
   }
+
+  const addToCartHandler = () => {
+    toast({
+      title: 'A new product has been added to your cart',
+      status: 'success',
+      duration: 1500,
+      isClosable: true,
+      position: 'top',
+    });
+    dispatch(addToCart(product));
+  };
 
   const { description, imageUrl, inStock, name, price } = product;
 
@@ -45,7 +60,7 @@ export const ProductPage = () => {
           bg="white"
           border={'1px'}
           borderColor="black"
-          boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 cyan')}
+          boxShadow={boxShadow}
         >
           <Box borderBottom={'1px'} borderColor="black">
             <Img
@@ -55,6 +70,7 @@ export const ProductPage = () => {
               h="full"
               w="full"
               alt={'Blog Image'}
+              aspectRatio={4 / 3}
             />
           </Box>
           <Box p={4}>
@@ -88,6 +104,7 @@ export const ProductPage = () => {
               roundedBottom={'sm'}
               cursor={'pointer'}
               w="full"
+              onClick={addToCartHandler}
             >
               <Text fontSize={'md'} fontWeight={'semibold'}>
                 Add in Cart
@@ -97,7 +114,7 @@ export const ProductPage = () => {
             <Flex
               p={4}
               alignItems="center"
-              justifyContent={'space-between'}
+              justifyContent={'center'}
               roundedBottom={'sm'}
               borderLeft={'1px'}
               cursor="pointer"
