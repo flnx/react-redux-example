@@ -13,8 +13,8 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useGetProductsQuery } from 'src/features/apiSlice';
 import { addToCart } from 'src/features/cart/cartSlice';
-import { useGetProductsQuery } from 'src/features/products/productsApiSlice';
 
 export const ProductPage = () => {
   const { itemId } = useParams();

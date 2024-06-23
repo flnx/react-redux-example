@@ -1,9 +1,9 @@
-import { useGetProductsQuery } from 'src/features/products/productsApiSlice';
 
 import { SimpleGrid } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 
 import { Product } from './Product';
+import { useGetProductsQuery } from '../apiSlice';
 
 export const Products = () => {
   const { isLoading, data, error } = useGetProductsQuery('');
